@@ -4,6 +4,7 @@
 
 *{
   font-family: 'Montserrat',sans-serif;
+  color: whitesmoke;
 }
 .layout{
   display: flex;
@@ -12,7 +13,7 @@
   position: relative;
 }
 .layout-main{
-  background-color: rgb(231, 238, 241);
+  background-color:rgb(39, 42, 43);
   width: 100vw;
   height: 94.5vh;
   display: flex;
@@ -25,16 +26,26 @@
   left: 0;
   color: white;
   padding: 8px 16px;
-  background-color: rgb(47, 52, 56);
+  background-color: rgb(39, 42, 43);
+  border-bottom:1px solid whitesmoke;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.footer{
+  background-color: rgb(39, 42, 43);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 8px;
+
+  border-top:1px solid whitesmoke;
 }
 .title{
   font-size: 20px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 300;
 }
 .userIcon{
   cursor: pointer;
@@ -44,7 +55,8 @@
   opacity: 40%;
 }
 .login{
-  background-color: #093545;
+  /* background-color: #093545; */
+  background-color: rgb(39, 42, 43);
   padding: 16px;
   height: 100%;
   display: flex;
@@ -68,7 +80,7 @@ form{
 input{
   height: 2.5rem;
   width: 18.75rem;
-  background-color: #224957;
+  background-color: rgba(74, 74, 79, 0.941);
   color: white;
   border-radius: 10px;
   padding: 4px 8px;
@@ -87,7 +99,6 @@ input{
 }
 .googleSignIn{
   width: 18.75rem;
-  background-color: #20df800a;
   border-radius: 10px;
   height: 36px;
   display: flex;
@@ -107,4 +118,33 @@ input{
 
 .noAccount{
   color: rgb(208, 197, 197);
+}
+.fa-brands{
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.dashboard{
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+.menu-context{
+  width:6rem;
+  border: 1px solid white;
+  border-radius: 4px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  position: absolute;
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: rgb(74, 74, 79);
+  right:30px;
+  top: 34px;
+}
+.menu-item{
+  padding: 4px;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+  text-align: center;
 }

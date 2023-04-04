@@ -5,11 +5,7 @@ import {doc, getDoc} from 'firebase/firestore';
 
 const AuthContext = createContext({})
 
-export function useAuth(){
-    return useContext(AuthContext)
-}
-
-export function AuthProvider({children}:{children:React.ReactNode}){
+export function AuthProvider({children}){
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const userInfo = useRef();
@@ -34,7 +30,7 @@ export function AuthProvider({children}:{children:React.ReactNode}){
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, async user =>{
             setCurrentUser(user!)
-            setLoading((prev)=>!prev)
+            setLoading(false)
         })
         return unsubscribe
     },[])
@@ -53,4 +49,8 @@ export function AuthProvider({children}:{children:React.ReactNode}){
         </AuthContext.Provider>
     )
 
+}
+
+export function useAuth(){
+    return useContext(AuthContext)
 }
