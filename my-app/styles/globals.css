@@ -170,3 +170,44 @@ input{
 li{
   padding: 8px;
 }
+
+.todo_title{
+  font-size: 24px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.todo-card,.edit-input{
+  border: 1px solid white;
+  padding: 4px;
+  width: 20rem;
+  height: 2.4rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todo-list{
+  padding: 18px;
+  border: 1px dashed white;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.edit-container{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 20rem;
+}
+.fa-circle-check{
+  font-size: 24px;
+}
+
+
+.control-icons{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
