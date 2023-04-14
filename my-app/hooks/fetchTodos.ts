@@ -7,9 +7,13 @@ export default function useFetchTodos(){
     const{currentUser} = useAuth()
 
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [todos, setTodos] = useState(null)
-    console.log(error)
+    const [error, setError] = useState("")
+    const [todos, setTodos] = useState({})
+    const [isChanged, setIsChanged] = useState(false)
+
+    const mutate = () => {
+        setIsChanged((prev)=>!prev)
+    }
 
     useEffect(()=>{
         async function fetchData() {
@@ -17,7 +21,6 @@ export default function useFetchTodos(){
                 const docRef = doc(db,'users',currentUser.uid)
                 const docSnap = await getDoc(docRef)
                 if(docSnap.exists()){
-                    console.log(docSnap.data())
                     setTodos(docSnap.data().todos)
                 }
                 if(!docSnap.exists){
@@ -30,7 +33,7 @@ export default function useFetchTodos(){
             }
         }
         fetchData()
-    },[])
+    },[isChanged])
 
-    return {loading,error,todos}
+    return {loading,error,todos,mutate}
 }

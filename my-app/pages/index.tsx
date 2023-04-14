@@ -5,7 +5,6 @@ import UserDashboard from '@/component/UserDashboard';
 
 export default function Home() {
   const {currentUser} = useAuth();
-  console.log(currentUser)
   return (
     <>
       <Head>

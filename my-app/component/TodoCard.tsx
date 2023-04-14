@@ -1,27 +1,34 @@
-import { useState } from "react";
-
 interface TodoCardProps {
   todoItem: string;
-  handleEdit: () => void;
-  handleDelete: () => void;
-  edit: boolean;
+  handleEdit: (todoKey: string) => void;
+  todoKey: string;
+  edit: string | null;
+  editValue: string;
+  setEditValue: (edit: string) => void;
+  editFun: () => void;
+  deleteFun: (todoKey: string) => Promise<void>;
 }
 export function TodoCard({
   todoItem,
   handleEdit,
-  handleDelete,
+  todoKey,
   edit,
+  editValue,
+  setEditValue,
+  editFun,
+  deleteFun,
 }: TodoCardProps) {
-  const [check, setCheck] = useState(false);
   return (
     <div>
-      {check ? (
+      {edit === todoKey ? (
         <div className="edit-container">
-          <input type="text" className="edit-input" value={todoItem} />{" "}
-          <i
-            className="fa-solid fa-circle-check"
-            onClick={() => setCheck((prev) => !prev)}
-          ></i>
+          <input
+            type="text"
+            className="edit-input"
+            value={editValue}
+            onChange={(e) => setEditValue(e.target.value)}
+          />{" "}
+          <i className="fa-solid fa-circle-check" onClick={() => editFun()}></i>
         </div>
       ) : (
         <div className="todo-card">
@@ -29,11 +36,11 @@ export function TodoCard({
           <div className="control-icons">
             <i
               className="fa-solid fa-pencil"
-              onClick={() => setCheck((prev) => !prev)}
+              onClick={() => handleEdit(todoKey)}
             ></i>
             <i
               className="fa-regular fa-trash-can"
-              onClick={() => handleDelete()}
+              onClick={() => deleteFun(todoKey)}
             ></i>
           </div>
         </div>
