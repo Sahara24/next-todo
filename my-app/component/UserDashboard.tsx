@@ -4,6 +4,7 @@ import { deleteField, doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useAuth } from "@/context/AuthContext";
 import useFetchTodos from "@/hooks/fetchTodos";
+import { todoType } from "../hooks/fetchTodos";
 
 export default function UserDashboard() {
   const { currentUser } = useAuth();
@@ -16,7 +17,7 @@ export default function UserDashboard() {
 
   const handleEdit = (todoKey: string) => {
     setEdit(todoKey);
-    setEditValue(todos[todoKey]);
+    setEditValue(todos[todoKey as keyof todoType]);
   };
 
   const editTodoFun = async () => {
@@ -25,7 +26,7 @@ export default function UserDashboard() {
     }
     const newKey = edit!;
     console.log(newKey, editValue);
-    const userRef = doc(db, "users", currentUser.uid);
+    const userRef = doc(db, "users", currentUser!.uid);
     await setDoc(
       userRef,
       {
@@ -42,11 +43,13 @@ export default function UserDashboard() {
 
   const addTodoFun = async () => {
     if (todo) {
+      const check = Object.keys(todos);
+      console.log(check);
       const newKey =
         Object.keys(todos).length === 0
           ? 0
-          : Math.max(...Object.keys(todos)) + 1;
-      const userRef = doc(db, "users", currentUser.uid);
+          : Math.max(...Object.keys(todos).map((key) => Number(key))) + 1;
+      const userRef = doc(db, "users", currentUser!.uid);
       await setDoc(
         userRef,
         {
@@ -65,7 +68,7 @@ export default function UserDashboard() {
   }
 
   const deleteTodoFun = async (todoKey: string) => {
-    const userRef = doc(db, "users", currentUser.uid);
+    const userRef = doc(db, "users", currentUser!.uid);
     await setDoc(
       userRef,
       {
@@ -106,7 +109,7 @@ export default function UserDashboard() {
                   return (
                     <div key={index}>
                       <TodoCard
-                        todoItem={todos[item]}
+                        todoItem={todos[item as keyof todoType]}
                         handleEdit={handleEdit}
                         edit={edit}
                         todoKey={item}
